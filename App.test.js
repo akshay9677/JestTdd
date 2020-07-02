@@ -1,6 +1,6 @@
 function stringLiterals(name) {
     var str = name;
-    var str2 = name;
+    var str2 = str;
      str = '';
     return (str === str2);
   };
@@ -21,15 +21,26 @@ function numberLiterals(num){
       
   };
 
-  test('Complex Value Object',()=>{
-    expect(complexValueObject('Akshay')).toBe(true);
-  });
-  test('String Primary Value',()=>{
-      expect(stringLiterals('Akshay')).toBe(false);
+  function complexValueObjects(strg){
+    var obj = {name: strg}
+    return obj;
+  }
+  
+  describe('Primary and Complex values copying mechanism',()=>{
+    test('Complex Value Object',()=>{
+      expect(complexValueObject('Akshay')).toBe(true);
+    });
+    test('String Primary Value',()=>{
+        expect(stringLiterals('Akshay')).toBeFalsy();
+    });
+    test('Number Primary Value',()=>{
+      expect(numberLiterals(21)).toBeFalsy();
+    });
+    test('Complex value equality',()=>{
+      expect(complexValueObjects('akshay')).toEqual({name: 'akshay'});
+    })
   })
-  test('Number Primary Value',()=>{
-    expect(numberLiterals(21)).toBe(false);
-  })
+  
 
 
 
